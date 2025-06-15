@@ -1,0 +1,42 @@
+
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# VS Code settings
+.vscode/
+
+# Entornos virtuales
+env/
+venv/
+ENV/
+VENV/
+.venv/
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Archivos temporales
+*.log
+*.tmp
+
+# Bases de datos temporales o de prueba
+*.sqlite3
+*.db
+
+# Archivos de configuración de entorno
+.env
+
+# Archivos creados por PyInstaller
+dist/
+build/
+*.spec
+
+# Archivos creados por testing
+.pytest_cache/
+.coverage
+htmlcov/
