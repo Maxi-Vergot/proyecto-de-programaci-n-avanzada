@@ -6,9 +6,9 @@ from envios import (
     EnvioExpress,
     EnvioPrioritario,
     ConSeguroEnvio,
-    ConEmbalajeRegalo
+    ConEmbalajeRegalo,
+    aplicar_cupon
 )
-
 
 def seleccionar_metodo_envio():
     print("Seleccione un método de envío:")
@@ -38,6 +38,21 @@ def aplicar_decoradores(envio):
 
     return envio
 
+def aplicar_descuento_si_corresponde(envio):
+    print("¿Tiene un cupón de descuento? (s/n)")
+    if input("> ").strip().lower() == "s":
+        while True:
+            try:
+                porcentaje = int(input("Ingrese porcentaje de descuento (ej. 10 para 10%): "))
+                if 0 < porcentaje < 100:
+                    envio.calcular_costo = aplicar_cupon(porcentaje / 100)(envio.calcular_costo)
+                    break
+                else:
+                    print("Debe ingresar un número entre 1 y 99.")
+            except ValueError:
+                print("Entrada no válida. Intente nuevamente.")
+    return envio
+
 def main():
     print("=== Sistema de Envío de Pedidos ===")
     items = input("Ingrese los productos separados por coma: ").split(",")
@@ -51,8 +66,10 @@ def main():
 
     envio = seleccionar_metodo_envio()
     envio = aplicar_decoradores(envio)
+    envio = aplicar_descuento_si_corresponde(envio)
 
     pedido.asignar_metodo_envio(envio)
+
     print("\n" + pedido.obtener_resumen_envio())
 
 if __name__ == "__main__":
