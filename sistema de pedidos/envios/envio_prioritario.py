@@ -1,6 +1,6 @@
 
 
-from .metodo_envio import MetodoEnvio
+from envios.metodo_envio import MetodoEnvio
 
 class EnvioPrioritario(MetodoEnvio):
     def __init__(self):
