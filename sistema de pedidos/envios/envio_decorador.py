@@ -1,7 +1,7 @@
 
 
 from abc import ABC
-from .metodo_envio import MetodoEnvio
+from envios.metodo_envio import MetodoEnvio
 
 class EnvioDecorador(MetodoEnvio, ABC):
     def __init__(self, envio_base: MetodoEnvio):
