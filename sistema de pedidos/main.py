@@ -1,12 +1,17 @@
-from pedido import Pedido
-from envios import (
-    EnvioEstandar,
-    EnvioExpress,
-    EnvioPrioritario,
-    ConSeguroEnvio,
-    ConEmbalajeRegalo,
-    aplicar_cupon
-)
+import sys
+import os
+
+# Asegura que el directorio base esté en el path
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+from pedidos.pedido import Pedido
+from envios.envio_estandar import EnvioEstandar
+from envios.envio_express import EnvioExpress
+from envios.envio_prioritario import EnvioPrioritario
+from envios.con_seguro_envio import ConSeguroEnvio
+from envios.con_embalaje_regalo import ConEmbalajeRegalo
+from envios.decorador_descuento import aplicar_cupon
+
 from typing import Optional, List
 # se utiliza el modulo typing para anotar listas con elementos de un tipo específico.
 # Se usa cuando una variable, parámetro o retorno puede ser opcional (es decir, admite None)
@@ -76,13 +81,27 @@ def seleccionar_metodo_envio() -> Optional[object]:
         return EnvioEstandar()
 
 def aplicar_decoradores(envio: object) -> object:
-    print(PREGUNTA_SEGURO)
-    if input("> ").strip().lower() == "s":
-        envio = ConSeguroEnvio(envio)
+    while True:
+        print(PREGUNTA_SEGURO)
+        respuesta = input("> ").strip().lower()
+        if respuesta == "s":
+            envio = ConSeguroEnvio(envio)
+            break
+        elif respuesta == "n":
+            break
+        else:
+            print("Entrada inválida. Por favor, ingrese 's' o 'n'.")
 
-    print(PREGUNTA_REGALO)
-    if input("> ").strip().lower() == "s":
-        envio = ConEmbalajeRegalo(envio)
+    while True:
+        print(PREGUNTA_REGALO)
+        respuesta = input("> ").strip().lower()
+        if respuesta == "s":
+            envio = ConEmbalajeRegalo(envio)
+            break
+        elif respuesta == "n":
+            break
+        else:
+            print("Entrada inválida. Por favor, ingrese 's' o 'n'.")
 
     return envio
 
@@ -138,3 +157,4 @@ if __name__ == "__main__":
         print("\n\nOperación cancelada por el usuario.")
     except Exception as e:
         print(f"\nOcurrió un error inesperado: {e}")
+    input("\nPresione Enter para cerrar...")
