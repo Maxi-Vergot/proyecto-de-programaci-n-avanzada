@@ -1,14 +1,20 @@
 
 
-from pedido import Pedido
-from envios import (
-    EnvioEstandar,
-    EnvioExpress,
-    EnvioPrioritario,
-    ConSeguroEnvio,
-    ConEmbalajeRegalo,
-    aplicar_cupon
-)
+import sys
+import os
+
+# Asegura que el directorio base esté en el path
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+from pedidos.pedido import Pedido
+from envios.envio_estandar import EnvioEstandar
+from envios.envio_express import EnvioExpress
+from envios.envio_prioritario import EnvioPrioritario
+from envios.con_seguro_envio import ConSeguroEnvio
+from envios.con_embalaje_regalo import ConEmbalajeRegalo
+from envios.decorador_descuento import aplicar_cupon
+
+
 
 def seleccionar_metodo_envio():
     print("Seleccione un método de envío:")
@@ -28,13 +34,25 @@ def seleccionar_metodo_envio():
         return EnvioEstandar()
 
 def aplicar_decoradores(envio):
-    print("¿Desea añadir Seguro al envío? (s/n)")
-    if input("> ").strip().lower() == "s":
-        envio = ConSeguroEnvio(envio)
+    while True:
+        respuesta = input("¿Desea añadir Seguro al envío? (s/n): ").strip().lower()
+        if respuesta == "s":
+            envio = ConSeguroEnvio(envio)
+            break
+        elif respuesta == "n":
+            break
+        else:
+            print("Entrada inválida. Por favor, ingrese 's' o 'n'.")
 
-    print("¿Desea añadir Embalaje de Regalo? (s/n)")
-    if input("> ").strip().lower() == "s":
-        envio = ConEmbalajeRegalo(envio)
+    while True:
+        respuesta = input("¿Desea añadir Embalaje de Regalo? (s/n): ").strip().lower()
+        if respuesta == "s":
+            envio = ConEmbalajeRegalo(envio)
+            break
+        elif respuesta == "n":
+            break
+        else:
+            print("Entrada inválida. Por favor, ingrese 's' o 'n'.")
 
     return envio
 
@@ -74,3 +92,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    input("\nPresione Enter para cerrar...")
