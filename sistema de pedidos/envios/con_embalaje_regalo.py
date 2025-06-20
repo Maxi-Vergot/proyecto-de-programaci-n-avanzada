@@ -1,6 +1,6 @@
 
 
-from .envio_decorador import EnvioDecorador
+from envios.envio_decorador import EnvioDecorador
 
 class ConEmbalajeRegalo(EnvioDecorador):
     def __init__(self, envio_base, costo_embalaje=4.5):
