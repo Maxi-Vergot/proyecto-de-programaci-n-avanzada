@@ -31,9 +31,8 @@ Ejecución del Sistema
 
 ### Opción 1: Ejecutable (.exe)
 
-1. Abrir la carpeta `dist/` o la ubicación donde se haya generado el ejecutable.
-2. Hacer doble clic sobre el archivo `sistema-pedidos.exe`.
-3. El sistema se ejecutará en una ventana de consola y podrá ser utilizado de manera interactiva.
+1. Hacer doble clic sobre el archivo `sistema-pedidos.exe`.
+2. El sistema se ejecutará en una ventana de consola y podrá ser utilizado de manera interactiva.
 
 No se requiere instalación ni dependencias. El ejecutable funciona de forma autónoma en cualquier computadora con Windows.
 
