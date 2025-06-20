@@ -4,7 +4,7 @@ import os
 # Asegura que el directorio base esté en el path
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-from pedidos.pedido import Pedido
+from pedido.pedido import Pedido
 from envios.envio_estandar import EnvioEstandar
 from envios.envio_express import EnvioExpress
 from envios.envio_prioritario import EnvioPrioritario
